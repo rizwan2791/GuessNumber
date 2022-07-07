@@ -1,0 +1,45 @@
+package com.aurionpro.model;
+
+import java.util.Scanner;
+
+public class NumberGameMethods {
+	NumberGuess guess = new NumberGuess();
+
+	public void startGame() {
+		int computerNumber = guess.randomNumberByComputer();
+		while (guess.getTurn() < 7) {
+			System.out.println("Turn :" + guess.getTurn());
+			System.out.println("-------------------------");
+			int userNumber = guess.getUserGuessedNumber();
+			numberCamparison(userNumber, computerNumber);
+			if (userNumber == computerNumber)
+				break;
+			youLooseGame(userNumber, computerNumber);
+			guess.increamentTurn();
+		}
+	}
+
+	private void youLooseGame(int userNumber, int computerNumber) {
+		if ((userNumber != computerNumber) && (guess.getTurn() == 6))
+			System.out.println("You loose game!!");
+
+	}
+
+	private void numberCamparison(int userNumber, int computerNumber) {
+		if (userNumber > computerNumber)
+			System.out.println("Sorry, the number you guessed is too High\n");
+		else if (userNumber < computerNumber)
+			System.out.println("Sorry, the number you guessed is too Low\n");
+		ifCorrectNumberGuessed(userNumber, computerNumber);
+	}
+
+	private void ifCorrectNumberGuessed(int userNumber, int computerNumber) {
+		boolean isUserGuessCorrect = false;
+		if (userNumber == computerNumber) {
+			System.out.println("Congratulations! Your guess is correct!");
+			isUserGuessCorrect = true;
+		}
+
+	}
+
+}
