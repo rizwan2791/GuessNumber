@@ -1,13 +1,26 @@
-package com.aurionpro.model;
+package cpm.aurionpro.model;
 
 import java.util.Scanner;
 
-public class NumberGameMethods {
+public class NumberMethods {
 	NumberGuess guess = new NumberGuess();
+
+	public void start() {
+		System.out.print("Press 1 to start game 0 to end Game :");
+		Scanner sc = new Scanner(System.in);
+		int start = sc.nextInt();
+		while (start == 1) {
+			startGame();
+			if (start == 0)
+				break;
+			System.out.print("Press 1 to start game 0 to end Game :");
+			start = sc.nextInt();
+		}
+	}
 
 	public void startGame() {
 		int computerNumber = guess.randomNumberByComputer();
-		while (guess.getTurn() < 7) {
+		while (true) {
 			System.out.println("Turn :" + guess.getTurn());
 			System.out.println("-------------------------");
 			int userNumber = guess.getUserGuessedNumber();
@@ -37,6 +50,7 @@ public class NumberGameMethods {
 		boolean isUserGuessCorrect = false;
 		if (userNumber == computerNumber) {
 			System.out.println("Congratulations! Your guess is correct!");
+			System.out.println("You won in : " + guess.getTurn() + " Turns");
 			isUserGuessCorrect = true;
 		}
 
